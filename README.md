@@ -1,6 +1,6 @@
 # YunoHost Dockerfile
 
-This reposiroty contains the Dockerfile recipe to build a YunoHost container using Docker.
+This repository contains the Dockerfile recipe to build a YunoHost container using Docker.
 
 **Tested on Docker 1.5.0**
 
