@@ -2,7 +2,7 @@ FROM debian:wheezy
 MAINTAINER kload "kload@kload.fr"
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV LC_ALL=C
+ENV LC_ALL C
 
 RUN mkdir /etc/yunohost \
  && touch /etc/yunohost/from_script
