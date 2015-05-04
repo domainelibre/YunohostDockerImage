@@ -31,6 +31,7 @@ case "$1" in
         current_password=$(cat /etc/yunohost/mysql)
         new_password=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 16)
         mysqladmin -u root -p"$current_password" password $new_password
+        echo $new_password > /etc/yunohost/mysql
         service mysql restart
 
         # Killing remaining Postfix processes
