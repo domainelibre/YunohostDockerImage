@@ -2,7 +2,7 @@
 
 This repository contains the Dockerfile recipe to build a YunoHost container using Docker.
 
-**Tested on Docker 1.5.0**
+**Tested on Docker 1.7.1**
 
 ## Downloading prebuit image
 
@@ -18,10 +18,17 @@ docker build -t yunohost/full github.com/YunoHost/Dockerfile
 
 ## Running
 
-YunoHost is using many services, therefore many ports are to be opened:
+Run your container (don't forget to replace DOMAIN):
 
 ```
-docker run -d \
+docker run -h yunohost.DOMAIN -d yunohost/full /sbin/init
+```
+
+
+
+If you want to run the container and forward all the interesting ports to the host:
+```
+docker run -h yunohost.DOMAIN -d \
  -p 25:25 \
  -p 53:53/udp \
  -p 80:80 \
@@ -40,14 +47,16 @@ You may want to open the SSH port (22) as well.
 
 ## Post-installing
 
-Get your container's IP address (replace the CONTAINER_ID):
+Enter in your container by replacing XXXX by the 4 first character of the container id
 
 ```
-docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER_ID>
+docker exec -t -i XXXX /bin/bash
 ```
 
-Then go to https://container.ip with your web browser.
-
+And then run the special postinstall for docker
+```
+postinstall
+```
 
 ---
 

@@ -1,48 +1,32 @@
 #!/bin/bash
-
-### BEGIN INIT INFO
-# Provides:          firstrun
-# Required-Start:    $all
-# Required-Stop:
-# Should-Start:
-# Default-Start:     2 3 4 5
-# Default-Stop:      0 1 6
-# Short-Description: Script to run when first starting
-# Description:       Something needs to be done when  is
-#                    starting at first time.
-#                    regenerate ssh host key
-### END INIT INFO
-
-N=/etc/init.d/firstrun
-
-case "$1" in
-  start)
-        # Regenerating default SSL certificate
-        openssl req -x509 -nodes -newkey rsa:2048 -keyout /etc/yunohost/certs/yunohost.org/key.pem -out /etc/yunohost/certs/yunohost.org/crt.pem -days 3650 -subj '/CN=yunohost.org'
-        service nginx restart
-        
-        # Resetting SSH server keys
-        service ssh restart
-        rm -f /etc/ssh/ssh_host*
-        dpkg-reconfigure openssh-server 
-        
-        # Changing MySQL root password
-        service mysql restart
-        current_password=$(cat /etc/yunohost/mysql)
-        new_password=$(tr -dc A-Za-z0-9 < /dev/urandom | head -c 16)
-        mysqladmin -u root -p"$current_password" password $new_password
-        echo $new_password > /etc/yunohost/mysql
-        service mysql restart
-
-        # Killing remaining Postfix processes
-        killall master
-
-        /sbin/insserv -r firstrun
-        ;;
-  *)
-        echo "Usage: $N {start}" >&2
-        exit 1
-        ;;
-esac
+if [ -f "/etc/yunohost/installed" ]
+then
+    true
+else
+    service dnsmasq restart
+    service slapd restart
+    service nscd restart
+    service nslcd restart
+    service metronome restart
+    service nginx restart
+    DOMAIN=`hostname -d`    
+    #echo '127.0.0.1 ip.yunohost.org' >> /etc/hosts    
+    cat << EOF > /etc/dnsmasq.d/$DOMAIN
+resolv-file=
+#address=/$DOMAIN/127.0.0.3
+txt-record=$DOMAIN,"v=spf1 mx a -all"
+mx-host=$DOMAIN,$DOMAIN,5
+srv-host=_xmpp-client._tcp.$DOMAIN,$DOMAIN,5222,0,5
+srv-host=_xmpp-server._tcp.$DOMAIN,$DOMAIN,5269,0,5
+srv-host=_jabber._tcp.$DOMAIN,$DOMAIN,5269,0,5
+EOF
+    echo "127.0.0.3 $DOMAIN" >> /etc/hosts 
+    rm /sbin/iptables
+    rm /sbin/ip6tables
+    ln -s /bin/true /sbin/iptables
+    ln -s /bin/true /sbin/ip6tables
+    yunohost tools postinstall -d $DOMAIN -p yunohost || true
+    yunohost tools postinstall -d $DOMAIN -p yunohost
+fi
 
 exit 0

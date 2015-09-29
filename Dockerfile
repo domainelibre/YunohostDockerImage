@@ -1,30 +1,34 @@
-FROM debian:wheezy
-MAINTAINER kload "kload@kload.fr"
+FROM debian:jessie
+MAINTAINER ljf "valentin@grimaud.me"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C
+RUN rm -f /usr/sbin/policy-rc.d
+RUN apt-get update --quiet
 
-RUN mkdir /etc/yunohost \
- && touch /etc/yunohost/from_script
+# Allow amavis running even if uname return a bad hostname
+ADD 05-node_id /etc/amavis/conf.d/
+RUN chown root:root /etc/amavis/conf.d/05-node_id
+RUN chown root:root /etc/amavis
+RUN chown root:root /etc/amavis/conf.d
+RUN apt-get install -y --force-yes --no-install-recommends -o Dpkg::Options::="--force-confold" amavisd-new psmisc
 
-ADD yunohost.conf /etc/yunohost/yunohost.conf
-ADD debconfv2 /tmp/debconfv2
+# Yunohost Installation
+RUN apt-get install -y --force-yes --no-install-recommends git ca-certificates
+RUN git clone https://github.com/julienmalik/install_script /tmp/install_script
+RUN cd /tmp/install_script && ./install_yunohostv2 -a || true
+RUN killall dovecot || true
+RUN apt-get install -y --force-yes  || true
+RUN killall dovecot || true
+RUN apt-get install -y --force-yes
 
-RUN rm /usr/sbin/policy-rc.d \
- && apt-get update --quiet \
- && apt-get install -y --force-yes --no-install-recommends wget apt-utils openssh-server \
- && echo "deb http://repo.yunohost.org/ megusta main" >> /etc/apt/sources.list.d/yunohost.list \
- && wget -O- http://repo.yunohost.org/yunohost.asc -q | apt-key add - -qq \
- && apt-get update --quiet \
- && debconf-set-selections /tmp/debconfv2 \
- && apt-get install -y --force-yes \
- && apt-get -o Dpkg::Options::="--force-confold" install -qq -y --force-yes \
- yunohost yunohost-config yunohost-config-postfix postfix postfix-ldap postfix-policyd-spf-perl \
- && apt-get clean \
- && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# Fix dnsmasq fail on postinstall   
+RUN echo '' >> /etc/dnsmasq.conf
+RUN echo user=root >> /etc/dnsmasq.conf
+RUN export TERM=xterm
 
-ADD firstrun /etc/init.d/firstrun
-RUN update-rc.d firstrun defaults
+ADD firstrun /sbin/postinstall
+RUN chmod a+x /sbin/postinstall
 
-EXPOSE 22 25 53/udp 443 465 993 5222 5269 5290
+EXPOSE 22 25 53/udp 80 443 465 993 5222 5269 5290
 CMD /sbin/init
