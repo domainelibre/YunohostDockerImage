@@ -2,6 +2,10 @@
 
 This repository contains the Dockerfile recipe to build a YunoHost container using Docker.
 
+This package is only for testing/developement purpose and yunohost firewall might not working correctly. 
+
+If you need to test apps or firewall settings prefer a stronger virtualization. 
+
 **Tested on Docker 1.7.1**
 
 ## Downloading prebuit image

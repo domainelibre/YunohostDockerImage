@@ -3,12 +3,15 @@ if [ -f "/etc/yunohost/installed" ]
 then
     true
 else
+    # Restart service because the end of install_yunohostv2 wasn't executed
     service dnsmasq restart
     service slapd restart
     service nscd restart
     service nslcd restart
     service metronome restart
     service nginx restart
+    
+    # Fix dnsmasq failed due to the address instruction
     DOMAIN=`hostname -d`    
     #echo '127.0.0.1 ip.yunohost.org' >> /etc/hosts    
     cat << EOF > /etc/dnsmasq.d/$DOMAIN
@@ -21,10 +24,15 @@ srv-host=_xmpp-server._tcp.$DOMAIN,$DOMAIN,5269,0,5
 srv-host=_jabber._tcp.$DOMAIN,$DOMAIN,5269,0,5
 EOF
     echo "127.0.0.3 $DOMAIN" >> /etc/hosts 
+    
+    # Fix the iptables fail
     rm /sbin/iptables
     rm /sbin/ip6tables
     ln -s /bin/true /sbin/iptables
     ln -s /bin/true /sbin/ip6tables
+    
+    # With docker the first time the script failed to create the domain
+    # Doing it a second time fix this ! 
     yunohost tools postinstall -d $DOMAIN -p yunohost || true
     yunohost tools postinstall -d $DOMAIN -p yunohost
 fi
