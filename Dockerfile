@@ -14,7 +14,7 @@ RUN chown root:root /etc/amavis/conf.d
 RUN apt-get install -y --force-yes --no-install-recommends -o Dpkg::Options::="--force-confold" amavisd-new psmisc
 
 # Yunohost Installation
-RUN apt-get install -y --force-yes --no-install-recommends git ca-certificates
+RUN apt-get install -y --force-yes --no-install-recommends git ca-certificates net-tools
 RUN git clone https://github.com/julienmalik/install_script /tmp/install_script
 # The install script failed to start dovecot because it is already started
 # Running separately the package doesn't work better because it is in trigger
