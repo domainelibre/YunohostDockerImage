@@ -61,6 +61,11 @@ And then run the special postinstall for docker
 postinstall
 ```
 
+## Login
+By default these passwords are set:
+root: yunohost
+admin: yunohost
+
 ---
 
 **More information on [yunohost.org/docker](https://yunohost.org/docker)**
