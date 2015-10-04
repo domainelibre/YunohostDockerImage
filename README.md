@@ -8,6 +8,11 @@ If you need to test apps or firewall settings prefer a stronger virtualization.
 
 **Tested on Docker 1.7.1**
 
+## Caution
+
+Don't run this dockerfile with --priviledge, it could broke your host system.
+
+
 ## Downloading prebuit image
 
 ```
@@ -26,23 +31,6 @@ Run your container (don't forget to replace DOMAIN):
 
 ```
 docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d yunohost/full /sbin/init
-```
-
-
-If you want to run the container and forward all the interesting ports to the host:
-```
-docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d \
- -p 25:25 \
- -p 53:53/udp \
- -p 80:80 \
- -p 443:443 \
- -p 465:465 \
- -p 993:993 \
- -p 5222:5222 \
- -p 5269:5269 \
- -p 5290:5290 \
- yunohost/full \
- /sbin/init
 ```
 
 You may want to open the SSH port (22) as well.
