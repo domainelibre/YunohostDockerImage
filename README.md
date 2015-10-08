@@ -16,13 +16,13 @@ Don't run this dockerfile with --priviledge, it could broke your host system.
 ## Downloading prebuit image
 
 ```
-docker pull yunohost/full
+docker pull zamentur/yunohost-stable8
 ```
 
 ## Building
 
 ```
-docker build -t yunohost/full github.com/YunoHost/Dockerfile
+docker build -t zamentur/yunohost-stable8 github.com/YunoHost/Dockerfile
 ```
 
 ## Running
@@ -30,7 +30,7 @@ docker build -t yunohost/full github.com/YunoHost/Dockerfile
 Run your container (don't forget to replace DOMAIN):
 
 ```
-docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d yunohost/full /sbin/init
+docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d zamentur/yunohost-stable8 /sbin/init
 ```
 
 You may want to open the SSH port (22) as well.
