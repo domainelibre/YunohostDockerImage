@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:wheezy
 MAINTAINER ljf "valentin@grimaud.me"
 
 ENV DEBIAN_FRONTEND noninteractive

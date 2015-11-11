@@ -34,7 +34,14 @@ EOF
     # With docker the first time the script failed to create the domain
     # Doing it a second time fix this ! 
     yunohost tools postinstall -d $DOMAIN -p yunohost || true
-    yunohost tools postinstall -d $DOMAIN -p yunohost
+    yunohost tools postinstall -d $DOMAIN -p yunohost || true
+    touch /etc/yunohost/installed
+    yunohost app ssowatconf
+    service slapd start
+    service nscd start
+    service nslcd start
+    service nginx start
+    service mysql start
 fi
 
 exit 0
