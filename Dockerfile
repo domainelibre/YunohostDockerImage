@@ -20,7 +20,7 @@ RUN git clone https://github.com/YunoHost/install_script /tmp/install_script
 # Running separately the package doesn't work better because it is in trigger
 # That's why there is these killall & apt-get install -y
 # If you know how do it better don't hesitate to pull request
-RUN cd /tmp/install_script && ./install_yunohostv2 -a || true
+RUN cd /tmp/install_script && ./install_yunohostv2 -a -d stable || true
 RUN killall dovecot || true
 RUN apt-get install -y --force-yes  || true
 RUN killall dovecot || true
