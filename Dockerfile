@@ -15,7 +15,7 @@ RUN apt-get install -y --force-yes --no-install-recommends -o Dpkg::Options::="-
 
 # Yunohost Installation
 RUN apt-get install -y --force-yes --no-install-recommends git ca-certificates net-tools
-RUN git clone https://github.com/julienmalik/install_script /tmp/install_script
+RUN git clone https://github.com/YunoHost/install_script /tmp/install_script
 # The install script failed to start dovecot because it is already started
 # Running separately the package doesn't work better because it is in trigger
 # That's why there is these killall & apt-get install -y
