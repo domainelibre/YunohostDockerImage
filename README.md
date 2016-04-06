@@ -1,4 +1,5 @@
 # YunoHost Dockerfile
+## A crazy YunoHost dockerfile for ARM raspberry pi
 
 This repository contains the Dockerfile recipe to build a YunoHost container using Docker.
 
@@ -12,17 +13,10 @@ If you need to test apps or firewall settings prefer a stronger virtualization.
 
 Don't run this dockerfile with --privileged, it could break your host system.
 
-
-## Downloading prebuilt image
-
-```
-docker pull zamentur/yunohost-stable8
-```
-
 ## Building
 
 ```
-docker build -t zamentur/yunohost-stable8 github.com/YunoHost/Dockerfile
+docker build -t aymhce/yunohost-stable8 github.com/aymhce/YunohostPiDockerfile
 ```
 
 ## Running
@@ -30,7 +24,7 @@ docker build -t zamentur/yunohost-stable8 github.com/YunoHost/Dockerfile
 Run your container (don't forget to replace DOMAIN):
 
 ```
-docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d zamentur/yunohost-stable8 /sbin/init
+docker run -h yunohost.DOMAIN -v $(pwd):/yunohost -d aymhce/yunohost-stable8 /sbin/init
 ```
 
 You may want to open the SSH port (22) as well.
@@ -56,4 +50,4 @@ admin: yunohost
 
 ---
 
-**More information on [yunohost.org/docker](https://yunohost.org/docker)**
+**More information on [github.com/zamentur/Dockerfile](https://github.com/zamentur/Dockerfile) and on [yunohost.org/docker](https://yunohost.org/docker)**
