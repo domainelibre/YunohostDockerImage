@@ -1,5 +1,5 @@
-FROM debian:jessie
-MAINTAINER ljf "valentin@grimaud.me"
+FROM armbuild/debian
+#MAINTAINER ljf "valentin@grimaud.me"
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV LC_ALL C
