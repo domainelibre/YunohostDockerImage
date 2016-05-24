@@ -1,3 +1,5 @@
+# DON'T WORK SINCE YUNOHOST 2.4, SORRY...
+
 # YunoHost Dockerfile
 ## A crazy YunoHost dockerfile for ARM raspberry pi
 
