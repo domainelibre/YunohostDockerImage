@@ -11,7 +11,7 @@ apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openss
 git clone https://github.com/YunoHost/install_script /tmp/install_script
 
 # hack YunoHost install_script for bypass systemd check
-sed -i "s@/run/systemd/system@/run/systemd@g" /tmp/install_script/install_yunohost
+sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
 
 # do yunohost installation
 cd /tmp/install_script
