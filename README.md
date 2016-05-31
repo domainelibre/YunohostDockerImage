@@ -88,44 +88,6 @@ docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER_ID>
 
 Then go to https://CONTAINER_IP with your web browser.
 
-## Building ARM image
-
-```
-# clone yunohost install script
-git clone https://github.com/aymhce/YunohostDockerImage
-
-# rm if already created
-docker rm -f yunohost-build
-
-# run debian image
-docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
- --privileged \
- -p 25:25 \
- -p 53:53/udp \
- -p 80:80 \
- -p 443:443 \
- -p 465:465 \
- -p 993:993 \
- -p 5222:5222 \
- -p 5269:5269 \
- -p 5290:5290 \
- -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- armbuild/debian /bin/systemd
-
-# enter in running image
-docker exec -it yunohost-build bash
-
-# install yunohost
-cd /yunohost/YunohostDockerfile/
-chmod +x preinstall.sh
-./preinstall.sh
-
-exit
-
-# commit image on local
-docker commit yunohost-build domainelibre/yunohost-arm:2.4
-```
-
 ## Building AMD64 image
 
 ```
@@ -162,6 +124,44 @@ exit
 
 # commit image on local
 docker commit yunohost-build domainelibre/yunohost:2.4
+```
+
+## Building ARM image
+
+```
+# clone yunohost install script
+git clone https://github.com/aymhce/YunohostDockerImage
+
+# rm if already created
+docker rm -f yunohost-build
+
+# run debian image
+docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
+ --privileged \
+ -p 25:25 \
+ -p 53:53/udp \
+ -p 80:80 \
+ -p 443:443 \
+ -p 465:465 \
+ -p 993:993 \
+ -p 5222:5222 \
+ -p 5269:5269 \
+ -p 5290:5290 \
+ -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+ armbuild/debian /bin/systemd
+
+# enter in running image
+docker exec -it yunohost-build bash
+
+# install yunohost
+cd /yunohost/YunohostDockerfile/
+chmod +x preinstall.sh
+./preinstall.sh
+
+exit
+
+# commit image on local
+docker commit yunohost-build domainelibre/yunohost-arm:2.4
 ```
 
 ---
