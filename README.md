@@ -116,7 +116,7 @@ docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
 docker exec -it yunohost-build bash
 
 # install yunohost
-cd /yunohost/YunohostDockerfile/
+cd /yunohost/YunohostDockerImage/
 chmod +x preinstall.sh
 ./preinstall.sh
 
@@ -154,7 +154,7 @@ docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
 docker exec -it yunohost-build bash
 
 # install yunohost
-cd /yunohost/YunohostDockerfile/
+cd /yunohost/YunohostDockerImage/
 chmod +x preinstall.sh
 ./preinstall.sh
 
