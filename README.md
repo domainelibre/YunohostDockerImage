@@ -1,7 +1,7 @@
 # YunoHost 2.4 Docker image
 
 This repository contains tools to build a YunoHost 2.4 container using Docker.
-Image for amd64 and arm V7 (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
+Image for amd64 and armhf (ex : run for PC or run for RaspberryPi 2 or 3, not for RaspberryPi A/B).
 
 ## Pre-requirements 
 
@@ -35,7 +35,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost:2.4 /bin/systemd
+ domainelibre/yunohost /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -61,7 +61,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost-arm:2.4 /bin/systemd
+ domainelibre/yunohost-arm /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -123,7 +123,7 @@ chmod +x preinstall.sh
 exit
 
 # commit image on local
-docker commit yunohost-build domainelibre/yunohost:2.4
+docker commit yunohost-build domainelibre/yunohost:build
 ```
 
 ## Building ARM image
@@ -161,7 +161,7 @@ chmod +x preinstall.sh
 exit
 
 # commit image on local
-docker commit yunohost-build domainelibre/yunohost-arm:2.4
+docker commit yunohost-build domainelibre/yunohost-arm:build
 ```
 
 ---
