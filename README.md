@@ -100,15 +100,6 @@ docker rm -f yunohost-build
 # run debian image
 docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
  --privileged \
- -p 25:25 \
- -p 53:53/udp \
- -p 80:80 \
- -p 443:443 \
- -p 465:465 \
- -p 993:993 \
- -p 5222:5222 \
- -p 5269:5269 \
- -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
  debian /bin/systemd
 
@@ -119,7 +110,9 @@ docker exec -it yunohost-build bash
 cd /yunohost/YunohostDockerImage/
 chmod +x preinstall.sh
 ./preinstall.sh
-
+apt-get clean
+apt-get autoclean
+history -c
 exit
 
 # commit image on local
@@ -138,15 +131,6 @@ docker rm -f yunohost-build
 # run debian image
 docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
  --privileged \
- -p 25:25 \
- -p 53:53/udp \
- -p 80:80 \
- -p 443:443 \
- -p 465:465 \
- -p 993:993 \
- -p 5222:5222 \
- -p 5269:5269 \
- -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
  armbuild/debian /bin/systemd
 
@@ -157,7 +141,9 @@ docker exec -it yunohost-build bash
 cd /yunohost/YunohostDockerImage/
 chmod +x preinstall.sh
 ./preinstall.sh
-
+apt-get clean
+apt-get autoclean
+history -c
 exit
 
 # commit image on local
