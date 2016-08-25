@@ -13,7 +13,7 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
 ```
 # image amd64
 docker pull domainelibre/yunohost
-# image arm v7
+# image armv7/armhr
 docker pull domainelibre/yunohost-arm
 ```
 
@@ -132,7 +132,7 @@ docker rm -f yunohost-build
 docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
  --privileged \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- armbuild/debian /bin/systemd
+ armhf/debian /bin/systemd
 
 # enter in running image
 docker exec -it yunohost-build bash
