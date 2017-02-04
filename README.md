@@ -1,6 +1,6 @@
-# YunoHost 2.4 Docker image
+# YunoHost 2.X Docker image
 
-This repository contains tools to build a YunoHost 2.4 container using Docker.
+This repository contains tools to build a YunoHost 2.X container using Docker.
 Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
 
 ## Pre-requirements 
