@@ -30,6 +30,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 80:80 \
  -p 443:443 \
  -p 465:465 \
+ -p 587:587 \
  -p 993:993 \
  -p 5222:5222 \
  -p 5269:5269 \
