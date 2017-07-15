@@ -10,6 +10,10 @@ apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openss
 # get yunohost git repo
 git clone https://github.com/YunoHost/install_script /tmp/install_script
 
+# debug docker context
+apt-get install -y --force-yes --no-install-recommends resolvconf || \
+ echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
+
 # hack YunoHost install_script for bypass systemd check
 sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
 
