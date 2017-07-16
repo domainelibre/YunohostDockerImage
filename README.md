@@ -6,7 +6,7 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
 ## Pre-requirements 
 
 **The linux docker host must run systemd.**
-**Tested on Docker 1.7.1**
+**Tested on Docker 1.10**
 
 ## Downloading prebuit image
 
@@ -73,22 +73,18 @@ You may want to open the SSH port (22) as well.
 
 ## Post-installing
 
-### Enter in running image
+### Enter in running container
 
 ```
 docker exec -it yunohost bash
 yunohost tools postinstall
 ```
 
-### (OR) Go on post-install yunohost local web page
-
-Get your container's IP address (replace the CONTAINER_ID):
+### Install HTTPS certificate
 
 ```
-docker inspect --format '{{ .NetworkSettings.IPAddress }}' <CONTAINER_ID>
+yunohost domain cert-install
 ```
-
-Then go to https://CONTAINER_IP with your web browser.
 
 ## Building AMD64 image
 
@@ -103,7 +99,7 @@ docker rm -f yunohost-build
 docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
  --privileged \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- debian /bin/systemd
+ debian:8 /bin/systemd
 
 # enter in running image
 docker exec -it yunohost-build bash
@@ -134,7 +130,7 @@ docker rm -f yunohost-build
 docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
  --privileged \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- armhf/debian /bin/systemd
+ arm32v7/debian:8 /bin/systemd
 
 # enter in running image
 docker exec -it yunohost-build bash
