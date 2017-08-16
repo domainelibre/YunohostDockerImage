@@ -3,6 +3,10 @@
 DIRORI=$(dirname $0)
 cd $DIRORI
 
+# install type
+INSTALL_TYPE=stable
+[ "$1" != "" ] && INSTALL_TYPE=$1
+
 # install requirements
 apt-get update --quiet
 apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
@@ -19,7 +23,7 @@ sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
 
 # do yunohost installation
 cd /tmp/install_script
-./install_yunohost -a -d stable
+./install_yunohost -a -d $INSTALL_TYPE
 [ "$?" != "0" ] && echo "error while yunohost installation" && exit 1
 
 # force ulimit for slapd
