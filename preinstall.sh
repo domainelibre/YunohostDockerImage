@@ -24,7 +24,7 @@ sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
 # do yunohost installation
 cd /tmp/install_script
 ./install_yunohost -a -d $INSTALL_TYPE
-[ "$?" != "0" ] && echo "error while yunohost installation" && exit 1
+[ "$?" != "0" ] && cat /var/log/yunohost-installation.log && echo "error while yunohost installation" && exit 1
 
 # force ulimit for slapd
 sed -i '/\/lib\/lsb\/init-functions/a ulimit -n 1024' /etc/init.d/slapd
