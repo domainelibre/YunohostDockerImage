@@ -7,12 +7,16 @@ cd $DIRORI
 INSTALL_TYPE=stable
 [ "$1" != "" ] && INSTALL_TYPE=$1
 
+# branche_type
+BRANCHE_TYPE=master
+[ "$2" != "" ] && BRANCHE_TYPE=$2
+
 # install requirements
 apt-get update --quiet
 apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
 
 # get yunohost git repo
-git clone https://github.com/YunoHost/install_script /tmp/install_script
+git clone -b $BRANCHE_TYPE https://github.com/YunoHost/install_script /tmp/install_script
 
 # debug docker context
 apt-get install -y --force-yes --no-install-recommends resolvconf || \
