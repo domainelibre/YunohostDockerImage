@@ -95,7 +95,7 @@ git clone https://github.com/aymhce/YunohostDockerImage
 cd YunohostDockerImage
 
 # docker build
-docker build -f dockerfiles/amd64/Dockerfile_AMD64 -t domainelibre/yunohost:build .
+docker build -f Dockerfile_AMD64 -t domainelibre/yunohost:build .
 ```
 
 ## Building ARM image
@@ -106,7 +106,7 @@ git clone https://github.com/aymhce/YunohostDockerImage
 cd YunohostDockerImage
 
 # docker build
-docker build -f dockerfiles/armv7/Dockerfile_ARMV7 -t domainelibre/yunohost-arm:build .
+docker build -f Dockerfile_ARMV7 -t domainelibre/yunohost-arm:build .
 ```
 
 ---
