@@ -7,14 +7,14 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
 
 **The linux docker host must run systemd.**
 
-**Tested on Docker 1.10**
+**Tested on Docker 17.05**
 
 ## Downloading prebuit image
 
 ```
 # image amd64
-docker pull domainelibre/yunohost
-# image armv7/armhr
+docker pull domainelibre/yunohost2
+# image armv7/armhf
 docker pull domainelibre/yunohost-arm
 ```
 
@@ -37,7 +37,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost /bin/systemd
+ domainelibre/yunohost2 /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -92,30 +92,10 @@ yunohost domain cert-install
 ```
 # clone yunohost install script
 git clone https://github.com/aymhce/YunohostDockerImage
+cd YunohostDockerImage
 
-# rm if already created
-docker rm -f yunohost-build
-
-# run debian image
-docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
- --privileged \
- -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- debian:8 /bin/systemd
-
-# enter in running image
-docker exec -it yunohost-build bash
-
-# install yunohost
-cd /yunohost/YunohostDockerImage/
-chmod +x preinstall.sh
-./preinstall.sh
-apt-get clean
-apt-get autoclean
-history -c
-exit
-
-# commit image on local
-docker commit yunohost-build domainelibre/yunohost:build
+# docker build
+docker build -f dockerfiles/amd64/Dockerfile_AMD64 -t domainelibre/yunohost:build .
 ```
 
 ## Building ARM image
@@ -123,30 +103,10 @@ docker commit yunohost-build domainelibre/yunohost:build
 ```
 # clone yunohost install script
 git clone https://github.com/aymhce/YunohostDockerImage
+cd YunohostDockerImage
 
-# rm if already created
-docker rm -f yunohost-build
-
-# run debian image
-docker run -d -h yunohost.DOMAIN -v $(pwd):/yunohost --name=yunohost-build \
- --privileged \
- -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- arm32v7/debian:8 /bin/systemd
-
-# enter in running image
-docker exec -it yunohost-build bash
-
-# install yunohost
-cd /yunohost/YunohostDockerImage/
-chmod +x preinstall.sh
-./preinstall.sh
-apt-get clean
-apt-get autoclean
-history -c
-exit
-
-# commit image on local
-docker commit yunohost-build domainelibre/yunohost-arm:build
+# docker build
+docker build -f dockerfiles/armv7/Dockerfile_ARMV7 -t domainelibre/yunohost-arm:build .
 ```
 
 ---

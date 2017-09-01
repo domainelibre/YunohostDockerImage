@@ -1,6 +1,9 @@
-FROM arm32v7/debian:8
+FROM debian:9
 
 ENV DEBIAN_FRONTEND noninteractive
+
+ENV INSTALL_TYPE testing
+ENV BRANCHE_TYPE stretch
 
 RUN apt-get update && apt-get install -y systemd && apt-get clean
 
