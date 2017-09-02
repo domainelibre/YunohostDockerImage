@@ -15,12 +15,13 @@ BRANCHE_TYPE=master
 apt-get update --quiet
 apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
 
+# debug docker context for resolvconf
+apt-get install -y --force-yes --no-install-recommends resolvconf 2>/dev/null || \
+ echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
+
 # get yunohost git repo
 git clone -b $BRANCHE_TYPE https://github.com/YunoHost/install_script /tmp/install_script
-
-# debug docker context
-apt-get install -y --force-yes --no-install-recommends resolvconf || \
- echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
+git -C /tmp/install_script checkout $BRANCHE_TYPE
 
 # hack YunoHost install_script for bypass systemd check
 sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
@@ -33,4 +34,5 @@ cd /tmp/install_script
 # force ulimit for slapd
 sed -i '/\/lib\/lsb\/init-functions/a ulimit -n 1024' /etc/init.d/slapd
 
+# cleaning
 apt-get clean
