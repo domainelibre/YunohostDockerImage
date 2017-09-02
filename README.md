@@ -15,11 +15,11 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
 
  * AMD64
    * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
-   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
-   * [``stretch-testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
-   * [``stretch-unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
+   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.2-2`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
+   * [``stretch-testing`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
+   * [``stretch-unstable`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
  * ARMV7
    * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
