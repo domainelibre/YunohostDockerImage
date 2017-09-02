@@ -1,24 +1,38 @@
-# YunoHost 2.X Docker image
+## YunoHost 2.X Docker image
 
 This repository contains tools to build a YunoHost 2.X container using Docker.
 Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
 
-## Pre-requirements 
+### Pre-requirements 
 
 **The linux docker host must run systemd.**
 
 **Tested on Docker 17.05**
 
-## Downloading prebuit image
+### Docker images
+
+#### Supported tags and respective ``Dockerfile`` links
+
+ * AMD64
+   * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
+   * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
+   * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
+   * [``stretch-testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
+   * [``stretch-unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
+ * ARMV7
+   * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+
+#### Downloading prebuit image
 
 ```
 # image amd64
 docker pull domainelibre/yunohost2
 # image armv7/armhf
-docker pull domainelibre/yunohost-arm
+docker pull domainelibre/yunohost2-arm
 ```
 
-## Running AMD64 image
+### Running AMD64 image
 
 YunoHost is using many services, therefore many ports are to be opened:
 
@@ -45,7 +59,7 @@ docker start yunohost
 
 You may want to open the SSH port (22) as well.
 
-## Running ARM image
+### Running ARM image
 
 YunoHost is using many services, therefore many ports are to be opened:
 
@@ -64,7 +78,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost-arm /bin/systemd
+ domainelibre/yunohost2-arm /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -72,22 +86,22 @@ docker start yunohost
 
 You may want to open the SSH port (22) as well.
 
-## Post-installing
+### Post-installing
 
-### Enter in running container
+#### Enter in running container
 
 ```
 docker exec -it yunohost bash
 yunohost tools postinstall
 ```
 
-### Install HTTPS certificate
+#### Install HTTPS certificate
 
 ```
 yunohost domain cert-install
 ```
 
-## Building AMD64 image
+### Building AMD64 image
 
 ```
 # clone yunohost install script
@@ -98,7 +112,7 @@ cd YunohostDockerImage
 docker build -f Dockerfile_AMD64 -t domainelibre/yunohost:build .
 ```
 
-## Building ARM image
+### Building ARM image
 
 ```
 # clone yunohost install script
