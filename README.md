@@ -1,7 +1,7 @@
 ## YunoHost 2.X Docker image
 
 This repository contains tools to build a YunoHost 2.X container using Docker.
-Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
+Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
 
 ### Pre-requirements 
 
@@ -20,6 +20,8 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
    * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.2-2`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
    * [``stretch-testing`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
    * [``stretch-unstable`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
+ * I386
+   * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
    * [``latest``,``2.7``,``2.7.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
@@ -28,6 +30,8 @@ Image for amd64 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not f
 ```
 # image amd64
 docker pull domainelibre/yunohost2
+# image i386
+docker pull domainelibre/yunohost2-i386
 # image armv7/armhf
 docker pull domainelibre/yunohost2-arm
 ```
@@ -58,6 +62,32 @@ docker start yunohost
 ```
 
 You may want to open the SSH port (22) as well.
+
+### Running i386 image
+
+YunoHost is using many services, therefore many ports are to be opened:
+
+```
+# run container
+docker run -d -h yunohost.DOMAIN --name=yunohost \
+ --privileged \
+ -p 25:25 \
+ -p 53:53/udp \
+ -p 80:80 \
+ -p 443:443 \
+ -p 465:465 \
+ -p 587:587 \
+ -p 993:993 \
+ -p 5222:5222 \
+ -p 5269:5269 \
+ -p 5290:5290 \
+ -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+ domainelibre/yunohost2-i386 /bin/systemd
+
+# start container if already created
+docker start yunohost
+```
+
 
 ### Running ARM image
 
