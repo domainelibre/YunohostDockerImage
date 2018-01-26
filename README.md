@@ -14,16 +14,16 @@ Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2,
 #### Supported tags and respective ``Dockerfile`` links
 
  * AMD64
-   * [``latest``,``2.7``,``2.7.5-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``latest``,``2.7``,``2.7.7-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
-   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.5-2`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
+   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.7-2`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
    * [``stretch-testing`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
    * [``stretch-unstable`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
  * I386
-   * [``latest``,``2.7``,``2.7.5-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
+   * [``latest``,``2.7``,``2.7.7-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
-   * [``latest``,``2.7``,``2.7.5-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+   * [``latest``,``2.7``,``2.7.7-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
 #### Downloading prebuit image
 
