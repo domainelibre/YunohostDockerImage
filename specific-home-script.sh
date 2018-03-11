@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SIMPLE_VERSION=2.7
-FULL_VERSION=${SIMPLE_VERSION}.9-1
+FULL_VERSION=${SIMPLE_VERSION}.10-1
 
 docker build -f Dockerfile_ARMV7 -t domainelibre/yunohost-arm:build .
 [ $? != 0 ] && echo "echec build dockerfile" && exit 1
