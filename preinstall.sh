@@ -12,11 +12,13 @@ BRANCHE_TYPE=master
 [ "$2" != "" ] && BRANCHE_TYPE=$2
 
 # install requirements
+# deprecated : --force-yes
 apt-get update --quiet
-apt-get install -y --force-yes --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
+apt-get install -y --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
 
 # debug docker context for resolvconf
-apt-get install -y --force-yes --no-install-recommends resolvconf 2>/dev/null || \
+# deprecated : --force-yes
+apt-get install -y --no-install-recommends resolvconf 2>/dev/null || \
  echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 
 # get yunohost git repo
