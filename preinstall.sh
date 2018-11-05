@@ -8,7 +8,7 @@ INSTALL_TYPE=stable
 [ "$1" != "" ] && INSTALL_TYPE=$1
 
 # branche_type
-BRANCHE_TYPE=master
+BRANCHE_TYPE=stretch
 [ "$2" != "" ] && BRANCHE_TYPE=$2
 
 # install requirements

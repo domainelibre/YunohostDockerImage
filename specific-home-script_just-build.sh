@@ -1,10 +1,11 @@
 #!/bin/bash
 
-[ -z $SIMPLE_VERSION ] && SIMPLE_VERSION=2.7
-[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.10-1
-[ -z $DOCKER_FILE ] && DOCKER_FILE=Dockerfile_ARMV7_unstable_stretch
+[ -z $SIMPLE_VERSION ] && SIMPLE_VERSION=3.2
+[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.2-1
+[ -z $DOCKER_FILE ] && DOCKER_FILE=Dockerfile_ARMV7
 
-docker build --no-cache -f $DOCKER_FILE -t domainelibre/yunohost-arm:build .
+#--no-cache
+docker build -f $DOCKER_FILE -t domainelibre/yunohost-arm:build .
 [ $? != 0 ] && echo "echec build dockerfile" && exit 1
 
 docker rm -f yunohost

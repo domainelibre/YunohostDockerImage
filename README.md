@@ -1,6 +1,6 @@
-## YunoHost 2.X Docker image
+## YunoHost Docker image
 
-This repository contains tools to build a YunoHost 2.X container using Docker.
+This repository contains tools to build a YunoHost 2/3+ container using Docker.
 Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
 
 ### Pre-requirements 
@@ -14,26 +14,23 @@ Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2,
 #### Supported tags and respective ``Dockerfile`` links
 
  * AMD64
-   * [``latest``,``2.7``,``2.7.10-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``latest``,``3.2``,``3.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
-   * [``stretch-latest``,``stretch-2.7``,``stretch-2.7.10-1`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_stable_stretch)
-   * [``stretch-testing`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing_stretch)
-   * [``stretch-unstable`` **not working actually** (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable_stretch)
  * I386
-   * [``latest``,``2.7``,``2.7.10-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
+   * [``latest``,``3.2``,``3.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
-   * [``latest``,``2.7``,``2.7.10-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+   * [``latest``,``3.2``,``3.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
 #### Downloading prebuit image
 
 ```
 # image amd64
-docker pull domainelibre/yunohost2
+docker pull domainelibre/yunohost3
 # image i386
-docker pull domainelibre/yunohost2-i386
+docker pull domainelibre/yunohost3-i386
 # image armv7/armhf
-docker pull domainelibre/yunohost2-arm
+docker pull domainelibre/yunohost3-arm
 ```
 
 ### Running AMD64 image
@@ -55,7 +52,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost2 /bin/systemd
+ domainelibre/yunohost3 /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -82,7 +79,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost2-i386 /bin/systemd
+ domainelibre/yunohost3-i386 /bin/systemd
 
 # start container if already created
 docker start yunohost
@@ -108,7 +105,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 5269:5269 \
  -p 5290:5290 \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- domainelibre/yunohost2-arm /bin/systemd
+ domainelibre/yunohost3-arm /bin/systemd
 
 # start container if already created
 docker start yunohost

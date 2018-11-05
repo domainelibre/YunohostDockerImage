@@ -1,7 +1,4 @@
-FROM arm32v7/debian:8
-
-ENV INSTALL_TYPE stable
-ENV BRANCHE_TYPE master
+FROM arm32v7/debian:9.5
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -11,5 +8,11 @@ ADD preinstall.sh /tmp/preinstall.sh
 
 RUN chmod +x /tmp/preinstall.sh
 RUN /tmp/./preinstall.sh && rm /tmp/preinstall.sh && apt-get clean && apt-get autoclean
+
+ADD hack_scripts/hostfiles-hack.sh /usr/local/bin/
+ADD hack_scripts/hostfiles-hack.service /etc/systemd/system/
+RUN chmod 664 /etc/systemd/system/hostfiles-hack.service && \
+ chmod 744 /usr/local/bin/hostfiles-hack.sh && \
+ systemctl enable hostfiles-hack.service
 
 CMD ["/bin/systemd"]
