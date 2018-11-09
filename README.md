@@ -159,7 +159,7 @@ docker rm yunohost
 
 ```
 # clone yunohost install script
-git clone https://github.com/aymhce/YunohostDockerImage
+git clone https://github.com/domainelibre/YunohostDockerImage
 cd YunohostDockerImage
 
 # docker build
