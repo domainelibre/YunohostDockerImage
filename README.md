@@ -105,7 +105,19 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
 
 ```
 docker exec -it yunohost bash
+
+### Post-installation
+
+* simply do ...
+
+```
 yunohost tools postinstall
+```
+
+* ... or can pass arguments 
+
+```
+yunohost tools postinstall -d test.local -p secret
 ```
 
 #### Install HTTPS certificate
@@ -136,6 +148,10 @@ yunohost backup restore <date backup, ex : 20170430-174149>
 
 * On your current Yunohost container, create a backup
 
+```
+yunohost backup create
+```
+
 * Stop your current Yunohost container
 
 ```
@@ -156,10 +172,6 @@ docker run -d -h yunohost.DOMAIN --name=yunohost2 \
 
 ```
 docker exec -it yunohost2 bash
-
-cd /home/yunohost.backup/archives/
-ls -t *.tar.gz
-
 yunohost backup restore <date backup, ex : 20170430-174149>
 ```
 
