@@ -3,7 +3,7 @@
 This repository contains tools to build and run a YunoHost 2/3+ container using Docker.
 Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
 
-With this image, you can use YunoHost like a true phyiscal instance server with more flexibility for system management (quick install, multiple instances on the same server, can tag/backup/restore state with docker tools ...).
+With this image, you can use YunoHost like a true instance on physical server with more flexibility for system management (quick install, multiple instances on the same server, can tag/backup/restore state with docker tools ...).
 
 ### Pre-requirements 
 
