@@ -105,6 +105,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
 
 ```
 docker exec -it yunohost bash
+```
 
 ### Post-installation
 
