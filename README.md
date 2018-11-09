@@ -51,7 +51,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 993:993 \
  -v <backup path>:/home/yunohost.backup \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- <image name, ex : domainelibre/yunohost3> /bin/systemd
+ <image name, ex : domainelibre/yunohost3>
 ```
 
 * This is a complete example, with more services (ssh, smtp, dns, http, samba, pop3, jabber, udp, dlna), mapping local disks, inner docker service ... :
@@ -83,6 +83,20 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
  -v /var/run/docker.sock:/var/run/docker.sock \
  domainelibre/yunohost3 /bin/systemd
+```
+
+* This is a other example, specially for Docker for Windows :)
+
+```
+# run container
+docker run -d -h yunohost.DOMAIN --name=yunohost \
+ --privileged \
+ --restart always \
+ -p 80:80 \
+ -p 22:22 \
+ -p 443:443 \
+ -v C:/data:/media \
+ domainelibre/yunohost3
 ```
 
 ### First installing
