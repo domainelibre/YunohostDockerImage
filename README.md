@@ -147,6 +147,8 @@ yunohost backup restore <date backup, ex : 20170430-174149>
 
 ### Migrate to a new image version
 
+**You can classically upgrade your Yunohost instance directly in the container, but for a major upgrade you can follow theses lines :**
+
 * On your current Yunohost container, create a backup
 
 ```
