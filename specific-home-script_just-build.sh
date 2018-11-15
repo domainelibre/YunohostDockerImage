@@ -5,7 +5,7 @@
 [ -z $DOCKER_FILE ] && DOCKER_FILE=Dockerfile_ARMV7
 
 #--no-cache
-docker build -f $DOCKER_FILE -t domainelibre/yunohost3-arm:build .
+docker build --no-cache -f $DOCKER_FILE -t domainelibre/yunohost3-arm:build .
 [ $? != 0 ] && echo "echec build dockerfile" && exit 1
 
 docker rm -f yunohost
