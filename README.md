@@ -14,13 +14,13 @@ With this image, you can use YunoHost like a true instance on physical server wi
 #### Supported tags and respective ``Dockerfile`` links
 
  * AMD64
-   * [``latest``,``3.5``,``3.5.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
  * I386
-   * [``latest``,``3.5``,``3.5.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
+   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
-   * [``latest``,``3.5``,``3.5.2.2-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
 #### Downloading prebuit image
 

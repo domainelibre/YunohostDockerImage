@@ -1,7 +1,7 @@
 #!/bin/bash
 
-[ -z $SIMPLE_VERSION ] && SIMPLE_VERSION=3.5
-[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.2.2-1
+[ -z $SIMPLE_VERSION ] && SIMPLE_VERSION=3.6
+[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.4.6-1
 
 docker tag domainelibre/yunohost3-arm:build domainelibre/yunohost3-arm:$FULL_VERSION
 docker tag domainelibre/yunohost3-arm:build domainelibre/yunohost3-arm:$SIMPLE_VERSION
