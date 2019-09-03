@@ -83,6 +83,12 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  domainelibre/yunohost3 /bin/systemd
 ```
 
+* Or from `docker-compose`:
+```bash
+docker-compose pull
+docker-compose up -d
+```
+
 * This is a other example, specially for Docker for Windows :)
 
 ```
