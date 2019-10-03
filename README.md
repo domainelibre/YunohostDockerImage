@@ -35,15 +35,15 @@ docker pull domainelibre/yunohost3-arm
 
 ### Running image
 
-* Run Yunohost container with basic services (smtp, dns, http, pop3) :
+* Run Yunohost container with basic services (ssh, smtp, imap, dns, http):
 
 ```
 # run container
 docker run -d -h yunohost.DOMAIN --name=yunohost \
  --privileged \
  --restart always \
+ -p 2022:22 \
  -p 25:25 \
- -p 53:53/udp \
  -p 80:80 \
  -p 443:443 \
  -p 465:465 \
@@ -54,7 +54,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  <image name, ex : domainelibre/yunohost3>
 ```
 
-* This is a complete example, with more services (ssh, smtp, dns, http, samba, pop3, jabber, udp, dlna), mapping local disks, inner docker service ... :
+* This is a complete example, with more services (ssh, smtp, dns, http, samba, XMPP), mapping local disks, inner docker service ... :
 
 ```
 # run container
@@ -73,10 +73,8 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 465:465 \
  -p 587:587 \
  -p 993:993 \
- -p 1900:1900 \
  -p 5222:5222 \
  -p 5269:5269 \
- -p 5290:5290 \
  -p 49200:49200 \
  -v /media/mydisk/backup:/home/yunohost.backup \
  -v /media:/media \
