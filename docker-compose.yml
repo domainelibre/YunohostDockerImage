@@ -18,7 +18,7 @@ services:
       - '5269:5269'
     command: ["/bin/systemd"]
     volumes:
-      - '/srv/yuno/backup:/home/yunohost.backup'
+      - '/srv/yuno/backup:/home/yunohost.backup/archives'
       - '/media:/media'
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
       - '/var/run/docker.sock:/var/run/docker.sock'
