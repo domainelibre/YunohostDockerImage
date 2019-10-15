@@ -8,24 +8,17 @@ services:
     hostname: yunohost.DOMAIN
     ports:
       - '2022:22'
-      - '53:53/udp'
+      - '25:25'
       - '80:80'
-      - '137:137'
-      - '138:138'
-      - '139:139'
       - '443:443'
-      - '445:445'
       - '465:465'
       - '587:587'
       - '993:993'
-      - '1900:1900'
       - '5222:5222'
       - '5269:5269'
-      - '5290:5290'
-      - '49200:49200'
     command: ["/bin/systemd"]
     volumes:
-      - '/srv/yuno/backup:/home/yunohost.backup'
+      - '/srv/yuno/backup:/home/yunohost.backup/archives'
       - '/media:/media'
       - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
       - '/var/run/docker.sock:/var/run/docker.sock'
