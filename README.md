@@ -1,7 +1,7 @@
 ## YunoHost Docker image
 
 This repository contains tools to build and run a YunoHost 2/3+ container using Docker.
-Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2, not for RaspberryPi A/B).
+Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2/3/4, not for RaspberryPi A/B).
 
 With this image, you can use YunoHost like a true instance on physical server with more flexibility for system management (quick install, easier upgrade, multiple instances on the same server, can tag/backup/restore state with docker tools ...).
 
@@ -14,13 +14,13 @@ With this image, you can use YunoHost like a true instance on physical server wi
 #### Supported tags and respective ``Dockerfile`` links
 
  * AMD64
-   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
  * I386
-   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
+   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
-   * [``latest``,``3.6``,``3.6.4.6-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
 #### Downloading prebuit image
 
