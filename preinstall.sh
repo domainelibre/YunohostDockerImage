@@ -53,7 +53,7 @@ mv /bin/systemctl.bin /bin/systemctl
 # force ulimit for slapd in starting script
 sed -i '/\/lib\/lsb\/init-functions/a ulimit -n 1024' /etc/init.d/slapd
 
-# patchs for yunohost bugs
+# patchs for yunohost
 adduser admin
 systemctl enable nginx
 systemctl enable yunohost-api
@@ -64,6 +64,12 @@ systemctl enable fail2ban
 [ ! -f /etc/fail2ban/filter.d/postfix-sasl.conf ] \
         && echo -e "[Definition]\n" > /etc/fail2ban/filter.d/postfix-sasl.conf
 touch /var/log/mail.log
+#systemctl enable dovecot
+#systemctl enable postfix
+#systemctl enable rspamd
+#systemctl enable avahi-daemon
+#systemctl enable dnsmasq
+#systemctl enable redis-server
 
 # cleaning
 apt-get clean
