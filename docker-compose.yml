@@ -1,7 +1,7 @@
 version: '2'
 services:
   yunohost:
-    image: 'domainelibre/yunohost3'
+    image: 'domainelibre/yunohost'
     privileged: true
     restart: always
     container_name: yunohost
