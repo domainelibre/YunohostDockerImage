@@ -59,8 +59,10 @@ systemctl enable nginx
 systemctl enable yunohost-api
 systemctl enable php7.3-fpm
 systemctl enable fail2ban
-touch /etc/fail2ban/filter.d/sshd-ddos.conf
-touch /etc/fail2ban/filter.d/postfix-sasl.conf
+[ ! -f /etc/fail2ban/filter.d/sshd-ddos.conf ] \
+	&& echo -e "[Definition]\n" > /etc/fail2ban/filter.d/sshd-ddos.conf
+[ ! -f /etc/fail2ban/filter.d/postfix-sasl.conf ] \
+        && echo -e "[Definition]\n" > /etc/fail2ban/filter.d/postfix-sasl.conf
 touch /var/log/mail.log
 
 # cleaning
