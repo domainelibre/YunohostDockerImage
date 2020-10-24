@@ -1,7 +1,7 @@
 #!/bin/bash
 
 [ -z $SIMPLE_VERSION ] && SIMPLE_VERSION=4.0
-[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.8.1-1
+[ -z $FULL_VERSION ] && FULL_VERSION=${SIMPLE_VERSION}.8-1
 [ -z $DOCKER_FILE ] && DOCKER_FILE=Dockerfile_ARMV7
 
 #--no-cache
