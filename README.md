@@ -1,6 +1,6 @@
 ## YunoHost Docker image
 
-This repository contains tools to build and run a YunoHost 2/3+ container using Docker.
+This repository contains tools to build and run a YunoHost container using Docker.
 Image for amd64, i386 and armv7/armhf (ex : run for PC or run for RaspberryPi 2/3/4, not for RaspberryPi A/B).
 
 With this image, you can use YunoHost like a true instance on physical server with more flexibility for system management (quick install, easier upgrade, multiple instances on the same server, can tag/backup/restore state with docker tools ...).
@@ -14,23 +14,23 @@ With this image, you can use YunoHost like a true instance on physical server wi
 #### Supported tags and respective ``Dockerfile`` links
 
  * AMD64
-   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
+   * [``latest``,``4.0``,``4.0.8.1-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
    * [``testing`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_testing)
    * [``unstable`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64_unstable)
  * I386
-   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
+   * [``latest``,``4.0``,``4.0.8.1-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
  * ARMV7
-   * [``latest``,``3.7``,``3.7.1.3-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
+   * [``latest``,``4.0``,``4.0.8.1-1`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
 
 #### Downloading prebuit image
 
 ```
 # image amd64
-docker pull domainelibre/yunohost3
+docker pull domainelibre/yunohost
 # image i386
-docker pull domainelibre/yunohost3-i386
+docker pull domainelibre/yunohost-i386
 # image armv7/armhf
-docker pull domainelibre/yunohost3-arm
+docker pull domainelibre/yunohost-arm
 ```
 
 ### Running image
@@ -51,7 +51,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 993:993 \
  -v <backup path>:/home/yunohost.backup \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
- <image name, ex : domainelibre/yunohost3>
+ <image name, ex : domainelibre/yunohost>
 ```
 
 * This is a complete example, with more services (ssh, smtp, dns, http, samba, XMPP), mapping local disks, inner docker service ... :
@@ -80,7 +80,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -v /media:/media \
  -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
  -v /var/run/docker.sock:/var/run/docker.sock \
- domainelibre/yunohost3 /bin/systemd
+ domainelibre/yunohost /bin/systemd
 ```
 
 * Or from `docker-compose`:
@@ -100,7 +100,7 @@ docker run -d -h yunohost.DOMAIN --name=yunohost \
  -p 22:22 \
  -p 443:443 \
  -v C:/data:/media \
- domainelibre/yunohost3
+ domainelibre/yunohost
 ```
 
 ### First installing

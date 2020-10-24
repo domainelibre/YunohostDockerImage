@@ -1,0 +1,5 @@
+#!/bin/bash
+echo "fake iptables for yunohost in docker. Bye !"
+#/usr/sbin/iptables.bin $*
+exit 0
+

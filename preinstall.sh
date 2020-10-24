@@ -8,7 +8,7 @@ INSTALL_TYPE=stable
 [ "$1" != "" ] && INSTALL_TYPE=$1
 
 # branche_type
-BRANCHE_TYPE=stretch
+BRANCHE_TYPE=buster
 [ "$2" != "" ] && BRANCHE_TYPE=$2
 
 # install requirements
@@ -28,13 +28,38 @@ git -C /tmp/install_script checkout $BRANCHE_TYPE
 # hack YunoHost install_script for bypass systemd check
 sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
 
+# debug systemctl issues for docker, add proxy
+mv /bin/systemctl /bin/systemctl.bin
+echo -e "#"'!'"/bin/sh\n/bin/./systemctl.bin\nexit 0\n" > /bin/systemctl
+chmod +x /bin/systemctl
+
+# force ulimit for slapd now
+ulimit -n 1024
+
 # do yunohost installation
 cd /tmp/install_script
-./install_yunohost -a -d $INSTALL_TYPE
-[ "$?" != "0" ] && cat /var/log/yunohost-installation.log && cat /var/log/daemon.log && echo "error while yunohost installation" && exit 1
+./install_yunohost -f -a -d $INSTALL_TYPE
+[ "$?" != "0" ] && echo "error while yunohost installation" && exit 1
 
-# force ulimit for slapd
+# hack iptables for yunohost in docker
+mv /usr/sbin/iptables /usr/sbin/iptables.ori
+echo -e "#"'!'"/bin/sh\necho \"fake iptables for yunohost inside docker, unusable. For return non failure unix code 0. Bye !\"\nexit 0\n" > /usr/sbin/iptables
+chmod +x /usr/sbin/iptables
+
+# remove proxy for systemctl
+rm -f /bin/systemctl
+mv /bin/systemctl.bin /bin/systemctl
+
+# force ulimit for slapd in starting script
 sed -i '/\/lib\/lsb\/init-functions/a ulimit -n 1024' /etc/init.d/slapd
+
+# patchs for yunohost bugs
+adduser admin
+systemctl enable nginx
+systemctl enable yunohost-api
+systemctl enable php7.3-fpm
+systemctl enable fail2ban
 
 # cleaning
 apt-get clean
+
