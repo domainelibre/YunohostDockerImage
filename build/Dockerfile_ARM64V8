@@ -1,0 +1,36 @@
+FROM arm64v8/debian:buster
+
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && \
+    apt-get install -y systemd && \
+    apt-get clean
+
+ADD preinstall.sh /tmp/preinstall.sh
+RUN chmod +x /tmp/preinstall.sh && \
+    /tmp/./preinstall.sh && \
+    rm /tmp/preinstall.sh && \
+    apt-get clean && \
+    apt-get autoclean
+
+ADD hack_scripts/hostfiles-hack.sh /usr/local/bin/
+ADD hack_scripts/hostfiles-hack.service /etc/systemd/system/
+RUN chmod 664 /etc/systemd/system/hostfiles-hack.service && \
+    chmod 744 /usr/local/bin/hostfiles-hack.sh && \
+    systemctl enable hostfiles-hack.service && \
+    rm -rf \
+      /etc/machine-id \
+      /var/lib/dbus/machine-id \
+      /var/lib/apt/lists/* \
+      /var/log/alternatives.log \
+      /var/log/apt/history.log \
+      /var/log/apt/term.log \
+      /var/log/dpkg.log \
+      /var/cache/ldconfig/aux-cache \
+      /usr/share/doc \
+      /usr/share/man/ \
+      /usr/share/info/* \
+      /var/cache/man/* \
+      /tmp/*
+
+CMD ["/bin/systemd"]
+STOPSIGNAL SIGRTMIN+3
