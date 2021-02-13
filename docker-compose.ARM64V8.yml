@@ -1,7 +1,10 @@
 version: '2'
 services:
   yunohost:
-    image: 'domainelibre/yunohost'
+    image: 'cms0/yunohost'
+    build:
+      context: ./build
+      dockerfile: Dockerfile_ARM64V8
     privileged: true
     restart: always
     container_name: yunohost

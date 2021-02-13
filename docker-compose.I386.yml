@@ -1,0 +1,27 @@
+version: '2'
+services:
+  yunohost:
+    image: 'domainelibre/yunohost'
+    build:
+      context: ./build
+      dockerfile: Dockerfile_I386
+    privileged: true
+    restart: always
+    container_name: yunohost
+    hostname: yunohost.DOMAIN
+    ports:
+      - '2022:22'
+      - '25:25'
+      - '80:80'
+      - '443:443'
+      - '465:465'
+      - '587:587'
+      - '993:993'
+      - '5222:5222'
+      - '5269:5269'
+    command: ["/bin/systemd"]
+    volumes:
+      - '/srv/yuno/backup:/home/yunohost.backup/archives'
+      - '/media:/media'
+      - '/sys/fs/cgroup:/sys/fs/cgroup:ro'
+      - '/var/run/docker.sock:/var/run/docker.sock'
