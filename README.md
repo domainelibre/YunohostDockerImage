@@ -11,15 +11,6 @@ With this image, you can use YunoHost like a true instance on physical server wi
 
 ### Docker images
 
-#### Supported tags and respective ``Dockerfile`` links
-
- * AMD64
-   * [``latest``,``4.0.8-2`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_AMD64)
- * I386
-   * [``latest``,``4.0.8-2`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_I386)
- * ARMV7
-   * [``latest``,``4.0.8-2`` (Dockerfile)](https://github.com/domainelibre/YunohostDockerImage/blob/master/Dockerfile_ARMV7)
-
 #### Downloading prebuit image
 
 ```
@@ -27,6 +18,8 @@ With this image, you can use YunoHost like a true instance on physical server wi
 docker pull domainelibre/yunohost
 # image i386
 docker pull domainelibre/yunohost-i386
+# image arm64v8
+docker pull cms0/yunohost
 # image armv7/armhf
 docker pull domainelibre/yunohost-arm
 ```
@@ -186,15 +179,15 @@ yunohost backup restore <date backup, ex : 20170430-174149>
 docker rm yunohost
 ```
 
-### Building image
+### Building image witgh docker-compose
 
 ```
 # clone yunohost install script
-git clone https://github.com/domainelibre/YunohostDockerImage
+git clone https://github.com/christiansteier/YunohostDockerImage
 cd YunohostDockerImage
 
 # docker build
-docker build -f Dockerfile_<suffix docker file> -t <your image tag>:build .
+docker-compose -f docker-compose.<suffix docker file>.yml build
 ```
 
 ---
