@@ -8,13 +8,14 @@ INSTALL_TYPE=stable
 [ "$1" != "" ] && INSTALL_TYPE=$1
 
 # branche_type
-BRANCHE_TYPE=buster
+BRANCHE_TYPE=bullseye
 [ "$2" != "" ] && BRANCHE_TYPE=$2
 
 # install requirements
 # deprecated : --force-yes
 apt-get update --quiet
-apt-get install -y --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git
+apt-get install -y --no-install-recommends wget apt-utils ssh openssl ca-certificates openssh-server nano vim cron git curl
+
 
 # debug docker context for resolvconf
 # deprecated : --force-yes
@@ -22,11 +23,15 @@ apt-get install -y --no-install-recommends resolvconf 2>/dev/null || \
  echo "resolvconf resolvconf/linkify-resolvconf boolean false" | debconf-set-selections
 
 # get yunohost git repo
-git clone -b $BRANCHE_TYPE https://github.com/YunoHost/install_script /tmp/install_script
-git -C /tmp/install_script checkout $BRANCHE_TYPE
+#git clone https://github.com/YunoHost/install_script /tmp/install_script
+#git -C /tmp/install_script checkout $BRANCHE_TYPE
+
+mkdir /tmp/install_script
+
+curl https://raw.githubusercontent.com/YunoHost/install_script/main/$BRANCHE_TYPE -o /tmp/install_script/$BRANCHE_TYPE
 
 # hack YunoHost install_script for bypass systemd check
-sed -i "s@/run/systemd/system@/run@g" /tmp/install_script/install_yunohost
+sed -i "s@/run/systemd/system@/run@g" /tmp/install_yunohost
 
 # debug systemctl issues for docker, add proxy
 mv /bin/systemctl /bin/systemctl.bin
@@ -38,7 +43,8 @@ ulimit -n 1024
 
 # do yunohost installation
 cd /tmp/install_script
-./install_yunohost -f -a -d $INSTALL_TYPE
+chmod +x /tmp/install_script/$BRANCHE_TYPE
+./$BRANCHE_TYPE -f -a -d $INSTALL_TYPE
 [ "$?" != "0" ] && echo "error while yunohost installation" && exit 1
 
 # hack iptables for yunohost in docker
@@ -73,4 +79,3 @@ touch /var/log/mail.log
 
 # cleaning
 apt-get clean
-
